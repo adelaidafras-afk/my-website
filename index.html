@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sl">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Stone Atelier</title>
+<title>SKULPTINK</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -15,11 +15,7 @@
   --line:#d9d4cc;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   background:var(--bg);
@@ -70,21 +66,19 @@ nav a{
   transition:opacity 1.5s ease;
 }
 
-.slide.active{
-  opacity:1;
-}
+.slide.active{opacity:1;}
 
 .hero-overlay{
   position:absolute;
   bottom:80px;
   left:80px;
-  max-width:500px;
+  max-width:600px;
 }
 
 .hero-overlay h1{
   font-family:"Cormorant Garamond", serif;
-  font-size:64px;
-  line-height:1.05;
+  font-size:54px;
+  line-height:1.1;
 }
 
 .hero-overlay p{
@@ -105,7 +99,7 @@ h2{
 
 /* ABOUT */
 .about p{
-  max-width:700px;
+  max-width:800px;
   line-height:1.8;
   color:var(--muted);
 }
@@ -140,50 +134,11 @@ h2{
   overflow:hidden;
   color:var(--muted);
   transition:max-height 0.4s ease;
-  margin-top:0;
 }
 
 .service.active p{
-  max-height:200px;
+  max-height:300px;
   margin-top:10px;
-}
-
-/* BEFORE AFTER */
-.before-after{
-  max-width:900px;
-}
-
-.ba-container{
-  position:relative;
-  width:100%;
-  height:500px;
-  overflow:hidden;
-  border-radius:4px;
-  user-select:none;
-}
-
-.ba-before,
-.ba-after{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.ba-after{
-  width:50%;
-  border-right:2px solid rgba(255,255,255,0.7);
-}
-
-.ba-handle{
-  position:absolute;
-  top:0;
-  left:50%;
-  width:3px;
-  height:100%;
-  background:white;
-  cursor:ew-resize;
-  transform:translateX(-50%);
 }
 
 /* CONTACT */
@@ -194,22 +149,12 @@ h2{
   align-items:center;
 }
 
-.contact-img img{
-  width:100%;
-  border-radius:4px;
-}
-
 .contact-text p{
   color:var(--muted);
-  margin-bottom:10px;
+  margin-bottom:12px;
   line-height:1.7;
 }
 
-.contact-text strong{
-  color:var(--text);
-}
-
-/* FOOTER */
 footer{
   border-top:1px solid var(--line);
   padding:60px 10%;
@@ -221,19 +166,11 @@ footer{
   font-size:13px;
 }
 
-footer strong{
-  color:var(--text);
-  display:block;
-  margin-bottom:6px;
-}
-
 /* RESPONSIVE */
 @media(max-width:768px){
   nav{padding:15px 20px;}
-  .hero-overlay h1{font-size:40px;}
   .gallery{column-count:1;}
   .contact-wrap{grid-template-columns:1fr;}
-  footer{flex-direction:column;}
 }
 </style>
 </head>
@@ -242,164 +179,135 @@ footer strong{
 
 <!-- NAV -->
 <nav>
-  <div class="logo">Stone Atelier</div>
+  <div class="logo">SKULPTINK</div>
   <div>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#gallery">Work</a>
-    <a href="#before-after">Before/After</a>
-    <a href="#contact">Contact</a>
+    <a href="#about">O nas</a>
+    <a href="#services">Storitve</a>
+    <a href="#gallery">Projekti</a>
+    <a href="#contact">Kontakt</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');"></div>
-  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee');"></div>
-  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6');"></div>
+  <div class="slide active" style="background-image:url('https://i.imgur.com/wxltlKR.jpg');"></div>
+  <div class="slide" style="background-image:url('https://i.imgur.com/hZhkKMM.jpg');"></div>
+  <div class="slide" style="background-image:url('https://i.imgur.com/VilwgKL.jpg');"></div>
+  <div class="slide" style="background-image:url('https://i.imgur.com/MIAWT36.jpg');"></div>
 
   <div class="hero-overlay">
-    <h1>Stone, shaped with intention</h1>
-    <p>Crafted masonry for timeless architecture and modern spaces.</p>
+    <h1>Kamen. Oblikovan z natančnostjo.</h1>
+    <p>Ustvarjamo kamnoseške rešitve za trajne objekte, sodobne interierje in brezčasne arhitekturne detajle.</p>
   </div>
 </div>
 
 <!-- ABOUT -->
-<section id="about" class="about">
-  <h2>About</h2>
-  <p>
-    We are a stonemasonry studio dedicated to shaping natural stone into enduring architectural form.
-    Our work blends traditional craft with refined contemporary design.
-  </p>
+<section id="about">
+<h2>O nas</h2>
+<p>
+Smo kamnoseško podjetje z več kot 15 let izkušenj na področju obdelave naravnega kamna in polaganja ploščic. Naše delo združuje natančno ročno obrt, tehnično znanje in občutek za detajl.<br><br>
+
+Izvajamo projekte na različnih področjih: od klasičnih kamnoseških del do zahtevnih arhitekturnih rešitev v interierjih in eksterierjih. Delujemo tako na zasebnih kot poslovnih objektih, kjer poskrbimo za kakovostno izvedbo od ideje do končnega izdelka.<br><br>
+
+Naš pristop temelji na zanesljivosti, natančnosti in dolgotrajni vzdržljivosti materialov.
+</p>
 </section>
 
 <!-- GALLERY -->
 <section id="gallery">
-  <h2>Selected Work</h2>
-  <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511"/>
-    <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6"/>
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"/>
-    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"/>
-    <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?1"/>
-  </div>
+<h2>Galerija izdelkov</h2>
+<div class="gallery">
+
+<img src="https://i.imgur.com/b8QMUA7.jpg">
+<img src="https://i.imgur.com/CdeSzYv.jpg">
+<img src="https://i.imgur.com/wxltlKR.jpg">
+<img src="https://i.imgur.com/hZhkKMM.jpg">
+<img src="https://i.imgur.com/JrnjJhf.jpg">
+<img src="https://i.imgur.com/VilwgKL.jpg">
+<img src="https://i.imgur.com/MIAWT36.jpg">
+
+</div>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
-  <h2>Services</h2>
+<h2>Storitve</h2>
 
-  <div class="service">
-    <h3>Stone Wall Construction</h3>
-    <p>We build structural and decorative stone walls using traditional and modern techniques.</p>
-  </div>
+<div class="service"><h3>Kamnoseštvo</h3><p>Izdelava in montaža kamnitih elementov po meri – stopnice, police, fasadne obloge, notranji in zunanji detajli.</p></div>
 
-  <div class="service">
-    <h3>Restoration</h3>
-    <p>Careful restoration of historic stone buildings, preserving authenticity and detail.</p>
-  </div>
+<div class="service"><h3>Polaganje ploščic</h3><p>Polaganje keramike in kamna v kopalnicah, kuhinjah, hodnikih in poslovnih prostorih.</p></div>
 
-  <div class="service">
-    <h3>Custom Masonry</h3>
-    <p>Bespoke stone features designed for architectural and landscape integration.</p>
-  </div>
-</section>
+<div class="service"><h3>Naravni kamen</h3><p>Obdelava in montaža naravnega kamna za notranje in zunanje površine.</p></div>
 
-<!-- BEFORE / AFTER -->
-<section id="before-after" class="before-after">
-  <h2>Before / After</h2>
+<div class="service"><h3>Kopalniški pulti</h3><p>Izdelava po meri iz kamna ali tehničnih materialov.</p></div>
 
-  <div class="ba-container" id="ba">
-    <img class="ba-before" src="https://images.unsplash.com/photo-1505691938895-1758d7feb511">
-    <img class="ba-after" id="afterImg" src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6">
-    <div class="ba-handle" id="handle"></div>
-  </div>
+<div class="service"><h3>Kuhinjski pulti</h3><p>Odporni in estetski kuhinjski pulti za vsakodnevno uporabo.</p></div>
+
+<div class="service"><h3>Kamini</h3><p>Obloge kaminov iz kamna z arhitekturnim značajem.</p></div>
+
+<div class="service"><h3>Nagrobni spomeniki</h3><p>Izdelava in obnova z občutkom za tradicijo in trajnost.</p></div>
+
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <h2>Contact</h2>
+<h2>Kontakt</h2>
 
-  <div class="contact-wrap">
+<div class="contact-wrap">
 
-    <div class="contact-img">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"/>
-    </div>
+<div>
+<img src="https://i.imgur.com/MIAWT36.jpg" style="width:100%;border-radius:4px;">
+</div>
 
-    <div class="contact-text">
-      <p><strong>We are available for projects and enquiries.</strong></p>
+<div class="contact-text">
+<p><strong>Za ponudbo ali svetovanje nas kontaktirajte.</strong></p>
 
-      <p>You can reach us via telephone or email for consultations and quotes.</p>
+<p>SKULPT-INK<br>
+(sem dodaj naslov podjetja)<br>
+(sem dodaj telefon)<br>
+(sem dodaj e-mail)</p>
 
-      <p><strong>Telephone:</strong><br/>+00 123 456 789</p>
-      <p><strong>Email:</strong><br/>contact@stoneatelier.com</p>
-    </div>
+<p>Delujemo po dogovoru in po vsej Sloveniji.</p>
+</div>
 
-  </div>
+</div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div>
-    <strong>Stone Atelier</strong>
-    Stonemasonry Studio
-  </div>
+<div>
+<strong>skulptink</strong>
+Kamnoseštvo
+</div>
 
-  <div>
-    <strong>Address</strong>
-    12 Craft Street<br/>
-    Stonebridge
-  </div>
+<div>
+<strong>Naslov</strong>
+Kobdilj 18, Kobdilj, 6222 Štanjel
+</div>
 
-  <div>
-    <strong>Contact</strong>
-    +00 123 456 789<br/>
-    contact@stoneatelier.com
-  </div>
+<div>
+<strong>Kontakt</strong>
+skulpt.ink@gmail.com<br>
+telefon
+</div>
 </footer>
 
 <script>
+
 // HERO SLIDER
-const slides = document.querySelectorAll(".slide");
-let index = 0;
+const slides=document.querySelectorAll(".slide");
+let i=0;
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},5000);
 
-setInterval(() => {
-  slides[index].classList.remove("active");
-  index = (index + 1) % slides.length;
-  slides[index].classList.add("active");
-}, 5000);
-
-// SERVICES ACCORDION
-document.querySelectorAll(".service").forEach(item => {
-  item.addEventListener("click", () => {
-    item.classList.toggle("active");
-  });
+// ACCORDION
+document.querySelectorAll(".service").forEach(s=>{
+s.onclick=()=>s.classList.toggle("active");
 });
 
-// BEFORE / AFTER DRAG
-const container = document.getElementById("ba");
-const afterImg = document.getElementById("afterImg");
-const handle = document.getElementById("handle");
-
-let dragging = false;
-
-handle.addEventListener("mousedown", () => dragging = true);
-window.addEventListener("mouseup", () => dragging = false);
-
-window.addEventListener("mousemove", (e) => {
-  if(!dragging) return;
-
-  const rect = container.getBoundingClientRect();
-  let x = e.clientX - rect.left;
-
-  if(x < 0) x = 0;
-  if(x > rect.width) x = rect.width;
-
-  let percent = (x / rect.width) * 100;
-
-  afterImg.style.width = percent + "%";
-  handle.style.left = percent + "%";
-});
 </script>
 
 </body>

@@ -39,7 +39,6 @@ nav{
 .logo{
   font-family:"Cormorant Garamond", serif;
   font-size:20px;
-  letter-spacing:1px;
 }
 
 nav a{
@@ -54,16 +53,13 @@ nav a{
   height:100vh;
   display:grid;
   grid-template-columns:1fr 1.2fr;
-  position:relative;
 }
 
-/* TEXT SIDE */
 .hero-overlay{
   display:flex;
   flex-direction:column;
   justify-content:center;
   padding:0 80px;
-  z-index:3;
 }
 
 .hero-overlay h1{
@@ -78,7 +74,7 @@ nav a{
   max-width:420px;
 }
 
-/* IMAGE SIDE */
+/* HERO MEDIA */
 .hero-media{
   position:relative;
   overflow:hidden;
@@ -94,11 +90,8 @@ nav a{
   transition:opacity 1.5s ease;
 }
 
-.slide.active{
-  opacity:1;
-}
+.slide.active{opacity:1;}
 
-/* GRADIENT FADE */
 .hero-media::before{
   content:"";
   position:absolute;
@@ -106,14 +99,12 @@ nav a{
   top:0;
   width:100%;
   height:100%;
-  background:linear-gradient(
-    to right,
-    rgba(246,243,238,1) 0%,
-    rgba(246,243,238,0.75) 35%,
-    rgba(246,243,238,0.0) 70%
+  background:linear-gradient(to right,
+    rgba(246,243,238,1),
+    rgba(246,243,238,0.7),
+    rgba(246,243,238,0)
   );
   z-index:2;
-  pointer-events:none;
 }
 
 /* SECTIONS */
@@ -125,13 +116,15 @@ h2{
   font-family:"Cormorant Garamond", serif;
   font-size:42px;
   margin-bottom:20px;
+  margin-top:20px;
+  border-top:1px solid var(--line);
+  padding-top:40px;
 }
 
-/* ABOUT */
 .about p{
-  max-width:800px;
-  line-height:1.8;
   color:var(--muted);
+  line-height:1.8;
+  max-width:800px;
 }
 
 /* GALLERY */
@@ -144,7 +137,6 @@ h2{
   width:100%;
   margin-bottom:16px;
   border-radius:4px;
-  break-inside:avoid;
 }
 
 /* SERVICES */
@@ -163,7 +155,7 @@ h2{
   max-height:0;
   overflow:hidden;
   color:var(--muted);
-  transition:max-height 0.4s ease;
+  transition:0.4s;
 }
 
 .service.active p{
@@ -190,7 +182,7 @@ h2{
 
 .ba-after{
   width:50%;
-  border-right:2px solid rgba(255,255,255,0.7);
+  border-right:2px solid #fff;
 }
 
 .ba-handle{
@@ -201,7 +193,6 @@ h2{
   height:100%;
   background:white;
   cursor:ew-resize;
-  transform:translateX(-50%);
 }
 
 /* CONTACT */
@@ -209,13 +200,6 @@ h2{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:60px;
-  align-items:center;
-}
-
-.contact-text p{
-  color:var(--muted);
-  margin-bottom:12px;
-  line-height:1.7;
 }
 
 /* FOOTER */
@@ -225,15 +209,14 @@ footer{
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
-  gap:20px;
   color:var(--muted);
   font-size:13px;
 }
 
-/* RESPONSIVE */
+/* MOBILE */
 @media(max-width:768px){
   .hero{grid-template-columns:1fr;}
-  nav{padding:15px 20px;}
+  nav{padding:15px;}
   .gallery{column-count:1;}
   .contact-wrap{grid-template-columns:1fr;}
 }
@@ -257,19 +240,15 @@ footer{
 <!-- HERO -->
 <div class="hero">
 
-  <!-- TEXT -->
   <div class="hero-overlay">
     <h1>Kamen. Oblikovan z natančnostjo.</h1>
     <p>Ustvarjamo kamnoseške rešitve za trajne objekte, sodobne interierje in brezčasne arhitekturne detajle.</p>
   </div>
 
-  <!-- IMAGES -->
   <div class="hero-media">
     <div class="slide active" style="background-image:url('https://i.imgur.com/wxltlKR.jpg');"></div>
     <div class="slide" style="background-image:url('https://i.imgur.com/hZhkKMM.jpg');"></div>
-    <div class="slide" style="background-image:url('https://i.imgur.com/VilwgKL.jpg');"></div>
-    <div class="slide" style="background-image:url('https://i.imgur.com/MIAWT36.jpg');"></div>
-    <div class="slide" style="background-image:url('https://i.imgur.com/LFdYdws.jpg');"></div>
+    <div class="slide" style="background-image:url('https://i.imgur.com/JrnjJhf.jpg');"></div>
   </div>
 
 </div>
@@ -278,11 +257,7 @@ footer{
 <section id="about">
 <h2>O nas</h2>
 <p>
-Smo kamnoseško podjetje z več kot 15 let izkušenj na področju obdelave naravnega kamna in polaganja ploščic. Naše delo združuje natančno ročno obrt, tehnično znanje in občutek za detajl.
-<br><br>
-Izvajamo projekte na različnih področjih: od klasičnih kamnoseških del do zahtevnih arhitekturnih rešitev v interierjih in eksterierjih.
-<br><br>
-Naš pristop temelji na zanesljivosti, natančnosti in dolgotrajni vzdržljivosti materialov.
+Smo kamnoseško podjetje z več kot 15 let izkušenj...
 </p>
 </section>
 
@@ -291,14 +266,11 @@ Naš pristop temelji na zanesljivosti, natančnosti in dolgotrajni vzdržljivost
 <h2>Galerija izdelkov</h2>
 <div class="gallery">
 
-  <img src="https://i.imgur.com/b8QMUA7.jpg">
-  <img src="https://i.imgur.com/CdeSzYv.jpg">
-  <img src="https://i.imgur.com/wxltlKR.jpg">
-  <img src="https://i.imgur.com/hZhkKMM.jpg">
-  <img src="https://i.imgur.com/JrnjJhf.jpg">
-  <img src="https://i.imgur.com/VilwgKL.jpg">
-  <img src="https://i.imgur.com/MIAWT36.jpg">
-  <img src="https://i.imgur.com/LFdYdws.jpg">
+<img src="https://i.imgur.com/b8QMUA7.jpg">
+<img src="https://i.imgur.com/CdeSzYv.jpg">
+<img src="https://i.imgur.com/wxltlKR.jpg">
+<img src="https://i.imgur.com/hZhkKMM.jpg">
+<img src="https://i.imgur.com/JrnjJhf.jpg">
 
 </div>
 </section>
@@ -307,11 +279,9 @@ Naš pristop temelji na zanesljivosti, natančnosti in dolgotrajni vzdržljivost
 <section id="services">
 <h2>Storitve</h2>
 
-<div class="service"><h3>Kamnoseštvo</h3><p>Izdelava kamnitih elementov po meri.</p></div>
-<div class="service"><h3>Polaganje ploščic</h3><p>Strokovna izvedba keramike in kamna.</p></div>
-<div class="service"><h3>Naravni kamen</h3><p>Obdelava in montaža naravnega kamna.</p></div>
-<div class="service"><h3>Pulti</h3><p>Kopalniški in kuhinjski pulti po meri.</p></div>
-<div class="service"><h3>Kamini</h3><p>Kamnite obloge kaminov.</p></div>
+<div class="service"><h3>Kamnoseštvo</h3><p>Izdelava kamnitih elementov.</p></div>
+<div class="service"><h3>Polaganje ploščic</h3><p>Keramika in kamen.</p></div>
+<div class="service"><h3>Naravni kamen</h3><p>Obdelava in montaža.</p></div>
 
 </section>
 
@@ -320,13 +290,11 @@ Naš pristop temelji na zanesljivosti, natančnosti in dolgotrajni vzdržljivost
 <h2>Before / After</h2>
 
 <div class="ba-container" id="ba">
-
   <img class="ba-before" src="https://i.imgur.com/wxltlKR.jpg">
   <img class="ba-after" id="afterImg" src="https://i.imgur.com/hZhkKMM.jpg">
-
   <div class="ba-handle" id="handle"></div>
-
 </div>
+
 </section>
 
 <!-- CONTACT -->
@@ -336,18 +304,14 @@ Naš pristop temelji na zanesljivosti, natančnosti in dolgotrajni vzdržljivost
 <div class="contact-wrap">
 
 <div>
-<img src="https://i.imgur.com/Qhdzluy.jpg" style="width:100%;border-radius:4px;">
+<img src="https://i.imgur.com/JrnjJhf.jpg" style="width:100%;border-radius:4px;">
 </div>
 
-<div class="contact-text">
-<p><strong>Za ponudbo ali svetovanje nas kontaktirajte.</strong></p>
-
-<p>SKULPT-INK<br>
-Kobdilj 18, 6222 Štanjel<br>
+<div>
+<p><strong>SKULPTINK</strong><br>
+Kobdilj 18, Štanjel<br>
 skulpt.ink@gmail.com<br>
 telefon</p>
-
-<p>Delujemo po dogovoru in po vsej Sloveniji.</p>
 </div>
 
 </div>
@@ -355,9 +319,9 @@ telefon</p>
 
 <!-- FOOTER -->
 <footer>
-<div><strong>skulptink</strong>Kamnoseštvo</div>
-<div><strong>Naslov</strong>Kobdilj 18, Štanjel</div>
-<div><strong>Kontakt</strong>skulpt.ink@gmail.com</div>
+<div><strong>skulptink</strong><br>Kamnoseštvo</div>
+<div><strong>Naslov</strong><br>Kobdilj 18</div>
+<div><strong>Kontakt</strong><br>skulpt.ink@gmail.com</div>
 </footer>
 
 <script>
@@ -365,19 +329,13 @@ telefon</p>
 // HERO SLIDER
 const slides=document.querySelectorAll(".slide");
 let i=0;
-
 setInterval(()=>{
 slides[i].classList.remove("active");
 i=(i+1)%slides.length;
 slides[i].classList.add("active");
 },5000);
 
-// ACCORDION
-document.querySelectorAll(".service").forEach(s=>{
-s.onclick=()=>s.classList.toggle("active");
-});
-
-// BEFORE AFTER DRAG
+// BEFORE AFTER
 const container=document.getElementById("ba");
 const afterImg=document.getElementById("afterImg");
 const handle=document.getElementById("handle");

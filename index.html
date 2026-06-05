@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SKULPTINK</title>
 
@@ -19,8 +19,8 @@
 
 body{
   background:var(--bg);
-  font-family:Inter,sans-serif;
   color:var(--text);
+  font-family:Inter, sans-serif;
 }
 
 /* NAV */
@@ -32,13 +32,14 @@ nav{
   justify-content:space-between;
   padding:20px 60px;
   background:rgba(246,243,238,0.6);
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(12px);
   z-index:10;
 }
 
 .logo{
-  font-family:"Cormorant Garamond",serif;
+  font-family:"Cormorant Garamond", serif;
   font-size:20px;
+  letter-spacing:1px;
 }
 
 nav a{
@@ -60,10 +61,11 @@ nav a{
   flex-direction:column;
   justify-content:center;
   padding:0 80px;
+  z-index:2;
 }
 
 .hero-overlay h1{
-  font-family:"Cormorant Garamond",serif;
+  font-family:"Cormorant Garamond", serif;
   font-size:58px;
   line-height:1.1;
 }
@@ -74,8 +76,11 @@ nav a{
   max-width:420px;
 }
 
-/* HERO SLIDES */
-.hero-media{position:relative;overflow:hidden;}
+/* SLIDES */
+.hero-media{
+  position:relative;
+  overflow:hidden;
+}
 
 .slide{
   position:absolute;
@@ -104,7 +109,7 @@ section{
 }
 
 h2{
-  font-family:"Cormorant Garamond",serif;
+  font-family:"Cormorant Garamond", serif;
   font-size:42px;
   margin-bottom:20px;
 }
@@ -175,6 +180,7 @@ h2{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:60px;
+  align-items:center;
 }
 
 /* FOOTER */
@@ -188,10 +194,11 @@ footer{
   color:var(--muted);
 }
 
-/* MOBILE */
+/* RESPONSIVE */
 @media(max-width:768px){
   .hero{grid-template-columns:1fr;}
   .gallery{column-count:1;}
+  nav{padding:15px 20px;}
 }
 </style>
 </head>

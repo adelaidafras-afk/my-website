@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Stonemasonry Studio</title>
+<title>Stone Atelier</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
@@ -12,14 +12,10 @@
   --bg:#f6f3ee;
   --text:#1c1c1c;
   --muted:#6b6b6b;
-  --accent:#8a6f4d;
+  --line:#d9d4cc;
 }
 
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   background:var(--bg);
@@ -32,11 +28,12 @@ nav{
   position:fixed;
   top:0;
   width:100%;
-  padding:20px 60px;
   display:flex;
   justify-content:space-between;
-  background:rgba(246,243,238,0.8);
-  backdrop-filter:blur(10px);
+  padding:20px 60px;
+  background:rgba(246,243,238,0.6);
+  backdrop-filter:blur(12px);
+  z-index:10;
 }
 
 .logo{
@@ -46,75 +43,105 @@ nav{
 }
 
 nav a{
-  margin-left:20px;
+  margin-left:18px;
   text-decoration:none;
   color:var(--muted);
-  font-size:14px;
+  font-size:13px;
 }
 
-/* HERO */
+/* HERO SLIDER */
 .hero{
   height:100vh;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  padding:0 8%;
-  gap:40px;
+  position:relative;
+  overflow:hidden;
 }
 
-.hero h1{
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.5s ease;
+}
+
+.slide.active{
+  opacity:1;
+}
+
+.hero-overlay{
+  position:absolute;
+  bottom:80px;
+  left:80px;
+  max-width:500px;
+}
+
+.hero-overlay h1{
   font-family:"Cormorant Garamond", serif;
   font-size:64px;
   line-height:1.05;
 }
 
-.hero p{
-  margin-top:20px;
+.hero-overlay p{
+  margin-top:15px;
   color:var(--muted);
-  max-width:420px;
 }
 
-.hero img{
-  width:100%;
-  height:70vh;
-  object-fit:cover;
-  border-radius:4px;
-}
-
-/* SECTIONS */
+/* SECTION */
 section{
   padding:120px 10%;
 }
 
 h2{
   font-family:"Cormorant Garamond", serif;
-  font-size:40px;
+  font-size:42px;
   margin-bottom:20px;
 }
 
 /* ABOUT */
 .about p{
   max-width:700px;
-  color:var(--muted);
   line-height:1.8;
+  color:var(--muted);
 }
 
-/* SERVICES */
-.services{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:30px;
+/* GALLERY (masonry feel) */
+.gallery{
+  column-count:3;
+  column-gap:16px;
 }
 
-.card{
-  border-top:1px solid #ddd;
-  padding-top:20px;
+.gallery img{
+  width:100%;
+  margin-bottom:16px;
+  break-inside:avoid;
+  border-radius:4px;
 }
 
-.card h3{
+/* SERVICES ACCORDION */
+.service{
+  border-top:1px solid var(--line);
+  padding:20px 0;
+  cursor:pointer;
+}
+
+.service h3{
   font-family:"Cormorant Garamond", serif;
-  font-size:24px;
-  margin-bottom:10px;
+  font-size:26px;
+}
+
+.service p{
+  max-height:0;
+  overflow:hidden;
+  color:var(--muted);
+  transition:max-height 0.4s ease;
+  margin-top:0;
+}
+
+.service.active p{
+  max-height:200px;
+  margin-top:10px;
 }
 
 /* CONTACT */
@@ -125,105 +152,127 @@ h2{
 }
 
 input, textarea{
-  padding:12px;
   border:none;
-  border-bottom:1px solid #ccc;
+  border-bottom:1px solid var(--line);
   background:transparent;
+  padding:10px;
   outline:none;
 }
 
 button{
-  margin-top:10px;
   padding:12px;
+  border:none;
   background:var(--text);
   color:white;
-  border:none;
   cursor:pointer;
 }
 
 /* RESPONSIVE */
 @media(max-width:768px){
-  .hero{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-
-  .services{
-    grid-template-columns:1fr;
-  }
-
-  nav{
-    padding:15px 20px;
-  }
+  nav{padding:15px 20px;}
+  .hero-overlay h1{font-size:40px;}
+  .gallery{column-count:1;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <nav>
   <div class="logo">Stone Atelier</div>
   <div>
     <a href="#about">About</a>
     <a href="#services">Services</a>
+    <a href="#gallery">Work</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div>
-    <h1>Stone, shaped with intention</h1>
-    <p>
-      Bespoke stonemasonry crafted with precision, heritage, and modern architectural sensibility.
-    </p>
-  </div>
+<!-- HERO SLIDER -->
+<div class="hero">
 
-  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Stone work"/>
-</section>
+  <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6');"></div>
+  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?2');"></div>
+
+  <div class="hero-overlay">
+    <h1>Stone, shaped with intention</h1>
+    <p>Crafted masonry for timeless architecture and modern spaces.</p>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section id="about" class="about">
   <h2>About</h2>
   <p>
-    Our stonemason works with natural materials to create enduring architectural elements.
-    Each piece is handcrafted, balancing traditional techniques with modern design clarity.
+    We are a stonemasonry studio dedicated to shaping natural stone into enduring architectural form.
+    Our work blends traditional craft with refined contemporary design.
   </p>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <h2>Selected Work</h2>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511"/>
+    <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6"/>
+    <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?1"/>
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"/>
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"/>
+  </div>
 </section>
 
 <!-- SERVICES -->
 <section id="services">
   <h2>Services</h2>
 
-  <div class="services">
-    <div class="card">
-      <h3>Stone Walls</h3>
-      <p>Timeless dry stone and mortared wall construction.</p>
-    </div>
+  <div class="service">
+    <h3>Stone Wall Construction</h3>
+    <p>We build structural and decorative stone walls using traditional and modern techniques.</p>
+  </div>
 
-    <div class="card">
-      <h3>Restoration</h3>
-      <p>Careful restoration of historic stone structures.</p>
-    </div>
+  <div class="service">
+    <h3>Restoration</h3>
+    <p>Careful restoration of historic stone buildings, preserving authenticity and detail.</p>
+  </div>
 
-    <div class="card">
-      <h3>Custom Work</h3>
-      <p>Architectural stone features tailored to your space.</p>
-    </div>
+  <div class="service">
+    <h3>Custom Masonry</h3>
+    <p>Bespoke stone features designed for architectural and landscape integration.</p>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact">
+<section id="contact">
   <h2>Contact</h2>
 
   <form>
-    <input type="text" placeholder="Name"/>
-    <input type="email" placeholder="Email"/>
+    <input placeholder="Name"/>
+    <input placeholder="Email"/>
     <textarea rows="5" placeholder="Message"></textarea>
     <button type="submit">Send</button>
   </form>
 </section>
+
+<script>
+// HERO SLIDER
+const slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}, 5000);
+
+// ACCORDION
+document.querySelectorAll(".service").forEach(item => {
+  item.addEventListener("click", () => {
+    item.classList.toggle("active");
+  });
+});
+</script>
 
 </body>
 </html>

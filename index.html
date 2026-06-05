@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SKULPTINK</title>
 
@@ -19,8 +19,8 @@
 
 body{
   background:var(--bg);
+  font-family:Inter,sans-serif;
   color:var(--text);
-  font-family:Inter, sans-serif;
 }
 
 /* NAV */
@@ -32,12 +32,12 @@ nav{
   justify-content:space-between;
   padding:20px 60px;
   background:rgba(246,243,238,0.6);
-  backdrop-filter:blur(12px);
+  backdrop-filter:blur(10px);
   z-index:10;
 }
 
 .logo{
-  font-family:"Cormorant Garamond", serif;
+  font-family:"Cormorant Garamond",serif;
   font-size:20px;
 }
 
@@ -48,7 +48,7 @@ nav a{
   font-size:13px;
 }
 
-/* HERO SPLIT */
+/* HERO */
 .hero{
   height:100vh;
   display:grid;
@@ -63,7 +63,7 @@ nav a{
 }
 
 .hero-overlay h1{
-  font-family:"Cormorant Garamond", serif;
+  font-family:"Cormorant Garamond",serif;
   font-size:58px;
   line-height:1.1;
 }
@@ -74,11 +74,8 @@ nav a{
   max-width:420px;
 }
 
-/* HERO MEDIA */
-.hero-media{
-  position:relative;
-  overflow:hidden;
-}
+/* HERO SLIDES */
+.hero-media{position:relative;overflow:hidden;}
 
 .slide{
   position:absolute;
@@ -87,7 +84,7 @@ nav a{
   background-size:cover;
   background-position:center;
   opacity:0;
-  transition:opacity 1.5s ease;
+  transition:1.5s;
 }
 
 .slide.active{opacity:1;}
@@ -95,15 +92,9 @@ nav a{
 .hero-media::before{
   content:"";
   position:absolute;
-  left:0;
-  top:0;
   width:100%;
   height:100%;
-  background:linear-gradient(to right,
-    rgba(246,243,238,1),
-    rgba(246,243,238,0.7),
-    rgba(246,243,238,0)
-  );
+  background:linear-gradient(to right,#f6f3ee,rgba(246,243,238,.6),transparent);
   z-index:2;
 }
 
@@ -113,18 +104,9 @@ section{
 }
 
 h2{
-  font-family:"Cormorant Garamond", serif;
+  font-family:"Cormorant Garamond",serif;
   font-size:42px;
   margin-bottom:20px;
-  margin-top:20px;
-  border-top:1px solid var(--line);
-  padding-top:40px;
-}
-
-.about p{
-  color:var(--muted);
-  line-height:1.8;
-  max-width:800px;
 }
 
 /* GALLERY */
@@ -146,16 +128,11 @@ h2{
   cursor:pointer;
 }
 
-.service h3{
-  font-family:"Cormorant Garamond", serif;
-  font-size:26px;
-}
-
 .service p{
   max-height:0;
   overflow:hidden;
+  transition:.4s;
   color:var(--muted);
-  transition:0.4s;
 }
 
 .service.active p{
@@ -166,7 +143,6 @@ h2{
 /* BEFORE AFTER */
 .ba-container{
   position:relative;
-  width:100%;
   height:500px;
   overflow:hidden;
   border-radius:4px;
@@ -182,12 +158,11 @@ h2{
 
 .ba-after{
   width:50%;
-  border-right:2px solid #fff;
+  border-right:2px solid white;
 }
 
 .ba-handle{
   position:absolute;
-  top:0;
   left:50%;
   width:3px;
   height:100%;
@@ -209,16 +184,14 @@ footer{
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
-  color:var(--muted);
   font-size:13px;
+  color:var(--muted);
 }
 
 /* MOBILE */
 @media(max-width:768px){
   .hero{grid-template-columns:1fr;}
-  nav{padding:15px;}
   .gallery{column-count:1;}
-  .contact-wrap{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -242,13 +215,15 @@ footer{
 
   <div class="hero-overlay">
     <h1>Kamen. Oblikovan z natančnostjo.</h1>
-    <p>Ustvarjamo kamnoseške rešitve za trajne objekte, sodobne interierje in brezčasne arhitekturne detajle.</p>
+    <p>Ustvarjamo kamnoseške rešitve za trajne objekte.</p>
   </div>
 
   <div class="hero-media">
-    <div class="slide active" style="background-image:url('https://i.imgur.com/wxltlKR.jpg');"></div>
-    <div class="slide" style="background-image:url('https://i.imgur.com/hZhkKMM.jpg');"></div>
-    <div class="slide" style="background-image:url('https://i.imgur.com/JrnjJhf.jpg');"></div>
+    <div class="slide active" style="background-image:url('https://i.imgur.com/wxltlKR.jpg')"></div>
+    <div class="slide" style="background-image:url('https://i.imgur.com/hZhkKMM.jpg')"></div>
+    <div class="slide" style="background-image:url('https://i.imgur.com/GyTiYLK.jpg')"></div>
+    <div class="slide" style="background-image:url('https://i.imgur.com/OXWEvYX.jpg')"></div>
+    <div class="slide" style="background-image:url('https://i.imgur.com/LFdYdws.jpg')"></div>
   </div>
 
 </div>
@@ -256,23 +231,24 @@ footer{
 <!-- ABOUT -->
 <section id="about">
 <h2>O nas</h2>
-<p>
-Smo kamnoseško podjetje z več kot 15 let izkušenj...
-</p>
+<p>Smo kamnoseško podjetje z več kot 15 let izkušenj...</p>
 </section>
 
 <!-- GALLERY -->
 <section id="gallery">
 <h2>Galerija izdelkov</h2>
+
 <div class="gallery">
-
-<img src="https://i.imgur.com/b8QMUA7.jpg">
-<img src="https://i.imgur.com/CdeSzYv.jpg">
-<img src="https://i.imgur.com/wxltlKR.jpg">
-<img src="https://i.imgur.com/hZhkKMM.jpg">
-<img src="https://i.imgur.com/JrnjJhf.jpg">
-
+  <img src="https://i.imgur.com/RTiQBHi.jpg">
+  <img src="https://i.imgur.com/0rtWCly.jpg">
+  <img src="https://i.imgur.com/wxltlKR.jpg">
+  <img src="https://i.imgur.com/hZhkKMM.jpg">
+  <img src="https://i.imgur.com/JrnjJhf.jpg">
+  <img src="https://i.imgur.com/GyTiYLK.jpg">
+  <img src="https://i.imgur.com/OXWEvYX.jpg">
+  <img src="https://i.imgur.com/zcdClF1.jpg">
 </div>
+
 </section>
 
 <!-- SERVICES -->
@@ -290,8 +266,8 @@ Smo kamnoseško podjetje z več kot 15 let izkušenj...
 <h2>Before / After</h2>
 
 <div class="ba-container" id="ba">
-  <img class="ba-before" src="https://i.imgur.com/wxltlKR.jpg">
-  <img class="ba-after" id="afterImg" src="https://i.imgur.com/hZhkKMM.jpg">
+  <img class="ba-before" src="https://i.imgur.com/igGf5QB.jpg">
+  <img class="ba-after" id="afterImg" src="https://i.imgur.com/pjJqP8u.jpg">
   <div class="ba-handle" id="handle"></div>
 </div>
 
@@ -304,20 +280,19 @@ Smo kamnoseško podjetje z več kot 15 let izkušenj...
 <div class="contact-wrap">
 
 <div>
-<img src="https://i.imgur.com/JrnjJhf.jpg" style="width:100%;border-radius:4px;">
+<img src="https://i.imgur.com/zcdClF1.jpg" style="width:100%;border-radius:4px;">
 </div>
 
 <div>
 <p><strong>SKULPTINK</strong><br>
 Kobdilj 18, Štanjel<br>
-skulpt.ink@gmail.com<br>
-telefon</p>
+skulpt.ink@gmail.com</p>
 </div>
 
 </div>
+
 </section>
 
-<!-- FOOTER -->
 <footer>
 <div><strong>skulptink</strong><br>Kamnoseštvo</div>
 <div><strong>Naslov</strong><br>Kobdilj 18</div>
@@ -329,6 +304,7 @@ telefon</p>
 // HERO SLIDER
 const slides=document.querySelectorAll(".slide");
 let i=0;
+
 setInterval(()=>{
 slides[i].classList.remove("active");
 i=(i+1)%slides.length;
@@ -340,24 +316,22 @@ const container=document.getElementById("ba");
 const afterImg=document.getElementById("afterImg");
 const handle=document.getElementById("handle");
 
-let dragging=false;
+let drag=false;
 
-handle.addEventListener("mousedown",()=>dragging=true);
-window.addEventListener("mouseup",()=>dragging=false);
+handle.addEventListener("mousedown",()=>drag=true);
+window.addEventListener("mouseup",()=>drag=false);
 
 window.addEventListener("mousemove",(e)=>{
-if(!dragging) return;
+if(!drag) return;
 
-const rect=container.getBoundingClientRect();
-let x=e.clientX-rect.left;
+const r=container.getBoundingClientRect();
+let x=e.clientX-r.left;
+x=Math.max(0,Math.min(r.width,x));
 
-if(x<0)x=0;
-if(x>rect.width)x=rect.width;
+let p=(x/r.width)*100;
 
-let percent=(x/rect.width)*100;
-
-afterImg.style.width=percent+"%";
-handle.style.left=percent+"%";
+afterImg.style.width=p+"%";
+handle.style.left=p+"%";
 });
 
 </script>

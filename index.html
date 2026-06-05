@@ -49,19 +49,21 @@ nav a{
   font-size:13px;
 }
 
-/* HERO */
+/* HERO SPLIT */
 .hero{
   height:100vh;
   display:grid;
   grid-template-columns:1fr 1.2fr;
+  position:relative;
 }
 
+/* TEXT SIDE */
 .hero-overlay{
   display:flex;
   flex-direction:column;
   justify-content:center;
   padding:0 80px;
-  z-index:2;
+  z-index:3;
 }
 
 .hero-overlay h1{
@@ -76,7 +78,7 @@ nav a{
   max-width:420px;
 }
 
-/* SLIDES */
+/* IMAGE SIDE */
 .hero-media{
   position:relative;
   overflow:hidden;
@@ -89,18 +91,29 @@ nav a{
   background-size:cover;
   background-position:center;
   opacity:0;
-  transition:1.5s;
+  transition:opacity 1.5s ease;
 }
 
-.slide.active{opacity:1;}
+.slide.active{
+  opacity:1;
+}
 
+/* GRADIENT FADE */
 .hero-media::before{
   content:"";
   position:absolute;
+  left:0;
+  top:0;
   width:100%;
   height:100%;
-  background:linear-gradient(to right,#f6f3ee,rgba(246,243,238,.6),transparent);
+  background:linear-gradient(
+    to right,
+    rgba(246,243,238,1) 0%,
+    rgba(246,243,238,0.75) 35%,
+    rgba(246,243,238,0.0) 70%
+  );
   z-index:2;
+  pointer-events:none;
 }
 
 /* SECTIONS */
@@ -114,6 +127,13 @@ h2{
   margin-bottom:20px;
 }
 
+/* ABOUT */
+.about p{
+  max-width:800px;
+  line-height:1.8;
+  color:var(--muted);
+}
+
 /* GALLERY */
 .gallery{
   column-count:3;
@@ -124,6 +144,7 @@ h2{
   width:100%;
   margin-bottom:16px;
   border-radius:4px;
+  break-inside:avoid;
 }
 
 /* SERVICES */
@@ -133,11 +154,16 @@ h2{
   cursor:pointer;
 }
 
+.service h3{
+  font-family:"Cormorant Garamond", serif;
+  font-size:26px;
+}
+
 .service p{
   max-height:0;
   overflow:hidden;
-  transition:.4s;
   color:var(--muted);
+  transition:max-height 0.4s ease;
 }
 
 .service.active p{
@@ -148,6 +174,7 @@ h2{
 /* BEFORE AFTER */
 .ba-container{
   position:relative;
+  width:100%;
   height:500px;
   overflow:hidden;
   border-radius:4px;
@@ -163,16 +190,18 @@ h2{
 
 .ba-after{
   width:50%;
-  border-right:2px solid white;
+  border-right:2px solid rgba(255,255,255,0.7);
 }
 
 .ba-handle{
   position:absolute;
+  top:0;
   left:50%;
   width:3px;
   height:100%;
   background:white;
   cursor:ew-resize;
+  transform:translateX(-50%);
 }
 
 /* CONTACT */
@@ -183,6 +212,12 @@ h2{
   align-items:center;
 }
 
+.contact-text p{
+  color:var(--muted);
+  margin-bottom:12px;
+  line-height:1.7;
+}
+
 /* FOOTER */
 footer{
   border-top:1px solid var(--line);
@@ -190,15 +225,17 @@ footer{
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
-  font-size:13px;
+  gap:20px;
   color:var(--muted);
+  font-size:13px;
 }
 
 /* RESPONSIVE */
 @media(max-width:768px){
   .hero{grid-template-columns:1fr;}
-  .gallery{column-count:1;}
   nav{padding:15px 20px;}
+  .gallery{column-count:1;}
+  .contact-wrap{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -220,17 +257,19 @@ footer{
 <!-- HERO -->
 <div class="hero">
 
+  <!-- TEXT -->
   <div class="hero-overlay">
     <h1>Kamen. Oblikovan z natančnostjo.</h1>
-    <p>Ustvarjamo kamnoseške rešitve za trajne objekte.</p>
+    <p>Ustvarjamo kamnoseške rešitve za trajne objekte, sodobne interierje in brezčasne arhitekturne detajle.</p>
   </div>
 
+  <!-- IMAGES (UPDATED ONLY) -->
   <div class="hero-media">
-    <div class="slide active" style="background-image:url('https://i.imgur.com/wxltlKR.jpg')"></div>
-    <div class="slide" style="background-image:url('https://i.imgur.com/hZhkKMM.jpg')"></div>
-    <div class="slide" style="background-image:url('https://i.imgur.com/GyTiYLK.jpg')"></div>
-    <div class="slide" style="background-image:url('https://i.imgur.com/OXWEvYX.jpg')"></div>
-    <div class="slide" style="background-image:url('https://i.imgur.com/LFdYdws.jpg')"></div>
+    <div class="slide active" style="background-image:url('https://i.imgur.com/wxltlKR.jpg');"></div>
+    <div class="slide" style="background-image:url('https://i.imgur.com/hZhkKMM.jpg');"></div>
+    <div class="slide" style="background-image:url('https://i.imgur.com/GyTiYLK.jpg');"></div>
+    <div class="slide" style="background-image:url('https://i.imgur.com/OXWEvYX.jpg');"></div>
+    <div class="slide" style="background-image:url('https://i.imgur.com/LFdYdws.jpg');"></div>
   </div>
 
 </div>
@@ -238,22 +277,28 @@ footer{
 <!-- ABOUT -->
 <section id="about">
 <h2>O nas</h2>
-<p>Smo kamnoseško podjetje z več kot 15 let izkušenj...</p>
+<p>
+Smo kamnoseško podjetje z več kot 15 let izkušenj na področju obdelave naravnega kamna in polaganja ploščic. Naše delo združuje natančno ročno obrt, tehnično znanje in občutek za detajl.
+<br><br>
+Izvajamo projekte na različnih področjih: od klasičnih kamnoseških del do zahtevnih arhitekturnih rešitev v interierjih in eksterierjih.
+<br><br>
+Naš pristop temelji na zanesljivosti, natančnosti in dolgotrajni vzdržljivosti materialov.
+</p>
 </section>
 
-<!-- GALLERY -->
+<!-- GALLERY (UPDATED ONLY) -->
 <section id="gallery">
 <h2>Galerija izdelkov</h2>
 
 <div class="gallery">
-  <img src="https://i.imgur.com/RTiQBHi.jpg">
-  <img src="https://i.imgur.com/0rtWCly.jpg">
-  <img src="https://i.imgur.com/wxltlKR.jpg">
-  <img src="https://i.imgur.com/hZhkKMM.jpg">
-  <img src="https://i.imgur.com/JrnjJhf.jpg">
-  <img src="https://i.imgur.com/GyTiYLK.jpg">
-  <img src="https://i.imgur.com/OXWEvYX.jpg">
-  <img src="https://i.imgur.com/zcdClF1.jpg">
+<img src="https://i.imgur.com/RTiQBHi.jpg">
+<img src="https://i.imgur.com/0rtWCly.jpg">
+<img src="https://i.imgur.com/wxltlKR.jpg">
+<img src="https://i.imgur.com/hZhkKMM.jpg">
+<img src="https://i.imgur.com/JrnjJhf.jpg">
+<img src="https://i.imgur.com/GyTiYLK.jpg">
+<img src="https://i.imgur.com/OXWEvYX.jpg">
+<img src="https://i.imgur.com/zcdClF1.jpg">
 </div>
 
 </section>
@@ -262,13 +307,15 @@ footer{
 <section id="services">
 <h2>Storitve</h2>
 
-<div class="service"><h3>Kamnoseštvo</h3><p>Izdelava kamnitih elementov.</p></div>
-<div class="service"><h3>Polaganje ploščic</h3><p>Keramika in kamen.</p></div>
-<div class="service"><h3>Naravni kamen</h3><p>Obdelava in montaža.</p></div>
+<div class="service"><h3>Kamnoseštvo</h3><p>Izdelava kamnitih elementov po meri.</p></div>
+<div class="service"><h3>Polaganje ploščic</h3><p>Strokovna izvedba keramike in kamna.</p></div>
+<div class="service"><h3>Naravni kamen</h3><p>Obdelava in montaža naravnega kamna.</p></div>
+<div class="service"><h3>Pulti</h3><p>Kopalniški in kuhinjski pulti po meri.</p></div>
+<div class="service"><h3>Kamini</h3><p>Kamnite obloge kaminov.</p></div>
 
 </section>
 
-<!-- BEFORE AFTER -->
+<!-- BEFORE AFTER (UPDATED ONLY) -->
 <section id="before-after">
 <h2>Before / After</h2>
 
@@ -280,7 +327,7 @@ footer{
 
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT (UPDATED ONLY) -->
 <section id="contact">
 <h2>Kontakt</h2>
 
@@ -290,20 +337,25 @@ footer{
 <img src="https://i.imgur.com/zcdClF1.jpg" style="width:100%;border-radius:4px;">
 </div>
 
-<div>
-<p><strong>SKULPTINK</strong><br>
-Kobdilj 18, Štanjel<br>
-skulpt.ink@gmail.com</p>
+<div class="contact-text">
+<p><strong>Za ponudbo ali svetovanje nas kontaktirajte.</strong></p>
+
+<p>SKULPT-INK<br>
+Kobdilj 18, 6222 Štanjel<br>
+skulpt.ink@gmail.com<br>
+telefon</p>
+
+<p>Delujemo po dogovoru in po vsej Sloveniji.</p>
 </div>
 
 </div>
-
 </section>
 
+<!-- FOOTER -->
 <footer>
-<div><strong>skulptink</strong><br>Kamnoseštvo</div>
-<div><strong>Naslov</strong><br>Kobdilj 18</div>
-<div><strong>Kontakt</strong><br>skulpt.ink@gmail.com</div>
+<div><strong>skulptink</strong>Kamnoseštvo</div>
+<div><strong>Naslov</strong>Kobdilj 18, Štanjel</div>
+<div><strong>Kontakt</strong>skulpt.ink@gmail.com</div>
 </footer>
 
 <script>
@@ -318,27 +370,34 @@ i=(i+1)%slides.length;
 slides[i].classList.add("active");
 },5000);
 
-// BEFORE AFTER
+// ACCORDION
+document.querySelectorAll(".service").forEach(s=>{
+s.onclick=()=>s.classList.toggle("active");
+});
+
+// BEFORE AFTER DRAG
 const container=document.getElementById("ba");
 const afterImg=document.getElementById("afterImg");
 const handle=document.getElementById("handle");
 
-let drag=false;
+let dragging=false;
 
-handle.addEventListener("mousedown",()=>drag=true);
-window.addEventListener("mouseup",()=>drag=false);
+handle.addEventListener("mousedown",()=>dragging=true);
+window.addEventListener("mouseup",()=>dragging=false);
 
 window.addEventListener("mousemove",(e)=>{
-if(!drag) return;
+if(!dragging) return;
 
-const r=container.getBoundingClientRect();
-let x=e.clientX-r.left;
-x=Math.max(0,Math.min(r.width,x));
+const rect=container.getBoundingClientRect();
+let x=e.clientX-rect.left;
 
-let p=(x/r.width)*100;
+if(x<0)x=0;
+if(x>rect.width)x=rect.width;
 
-afterImg.style.width=p+"%";
-handle.style.left=p+"%";
+let percent=(x/rect.width)*100;
+
+afterImg.style.width=percent+"%";
+handle.style.left=percent+"%";
 });
 
 </script>

@@ -22,7 +22,7 @@
 }
 
 html, body{
-  overflow-x:hidden; /* ✅ FIX: prevents iPhone horizontal scroll */
+  overflow-x:hidden;
 }
 
 body{
@@ -38,15 +38,10 @@ nav{
   width:100%;
   display:flex;
   justify-content:space-between;
-
-  /* ✅ FIX: responsive padding instead of fixed 60px */
   padding:20px clamp(16px, 4vw, 60px);
-
   background:rgba(246,243,238,0.6);
   backdrop-filter:blur(12px);
   z-index:10;
-
-  /* ✅ FIX: prevent overflow */
   flex-wrap:wrap;
   gap:10px;
 }
@@ -63,8 +58,6 @@ nav a{
   text-decoration:none;
   color:var(--muted);
   font-size:13px;
-
-  /* ✅ FIX: prevent text forcing overflow */
   white-space:nowrap;
 }
 
@@ -76,15 +69,11 @@ nav a{
   position:relative;
 }
 
-/* TEXT SIDE */
 .hero-overlay{
   display:flex;
   flex-direction:column;
   justify-content:center;
-
-  /* optional safer mobile spacing */
   padding:0 clamp(20px, 6vw, 80px);
-
   z-index:3;
 }
 
@@ -176,9 +165,29 @@ h2{
   cursor:pointer;
 }
 
+/* ✅ UPDATED: title layout + arrow */
 .service h3{
   font-family:"Cormorant Garamond", serif;
   font-size:26px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* minimal arrow */
+.service h3::after{
+  content:"›";
+  font-size:22px;
+  color:var(--muted);
+  transform:rotate(90deg);
+  transition:transform 0.3s ease, color 0.3s ease;
+}
+
+/* rotate arrow when open */
+.service.active h3::after{
+  transform:rotate(-90deg);
+  color:var(--text);
 }
 
 .service p{
@@ -303,7 +312,6 @@ footer{
 
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="logo">SKULPTINK</div>
   <div>
@@ -473,7 +481,6 @@ skulpt.ink@gmail.com<br>
 </footer>
 
 <script>
-
 // HERO SLIDER
 const slides=document.querySelectorAll(".slide");
 let i=0;
@@ -514,7 +521,7 @@ afterImg.style.width=percent+"%";
 handle.style.left=percent+"%";
 });
 
-// LIGHTBOX (click to enlarge)
+// LIGHTBOX
 document.querySelectorAll(".clickable").forEach(img=>{
   img.addEventListener("click",()=>{
     const lb=document.createElement("div");

@@ -15,7 +15,15 @@
   --line:#d9d4cc;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html, body{
+  overflow-x:hidden; /* ✅ FIX: prevents iPhone horizontal scroll */
+}
 
 body{
   background:var(--bg);
@@ -30,16 +38,24 @@ nav{
   width:100%;
   display:flex;
   justify-content:space-between;
-  padding:20px 60px;
+
+  /* ✅ FIX: responsive padding instead of fixed 60px */
+  padding:20px clamp(16px, 4vw, 60px);
+
   background:rgba(246,243,238,0.6);
   backdrop-filter:blur(12px);
   z-index:10;
+
+  /* ✅ FIX: prevent overflow */
+  flex-wrap:wrap;
+  gap:10px;
 }
 
 .logo{
   font-family:"Cormorant Garamond", serif;
   font-size:20px;
   letter-spacing:1px;
+  white-space:nowrap;
 }
 
 nav a{
@@ -47,6 +63,9 @@ nav a{
   text-decoration:none;
   color:var(--muted);
   font-size:13px;
+
+  /* ✅ FIX: prevent text forcing overflow */
+  white-space:nowrap;
 }
 
 /* HERO SPLIT */
@@ -62,7 +81,10 @@ nav a{
   display:flex;
   flex-direction:column;
   justify-content:center;
-  padding:0 80px;
+
+  /* optional safer mobile spacing */
+  padding:0 clamp(20px, 6vw, 80px);
+
   z-index:3;
 }
 
@@ -175,7 +197,7 @@ h2{
 .ba-container{
   position:relative;
   width:100%;
-  height: 800px; /* less zoomed than 500px */
+  height: 800px;
   overflow:hidden;
   border-radius:4px;
 }
@@ -204,7 +226,7 @@ h2{
   cursor:ew-resize;
   transform:translateX(-50%);
 }
-  
+
 /* CONTACT */
 .contact-wrap{
   display:grid;
@@ -234,7 +256,21 @@ footer{
 /* RESPONSIVE */
 @media(max-width:768px){
   .hero{grid-template-columns:1fr;}
-  nav{padding:15px 20px;}
+  nav{
+    padding:12px 16px;
+    justify-content:center;
+    text-align:center;
+  }
+
+  nav div{
+    width:100%;
+  }
+
+  nav a{
+    display:inline-block;
+    margin:6px 10px;
+  }
+
   .gallery{column-count:1;}
   .contact-wrap{grid-template-columns:1fr;}
 }

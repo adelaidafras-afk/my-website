@@ -482,25 +482,28 @@ skulpt.ink@gmail.com<br>
 <div><strong>Kontakt </strong>skulpt.ink@gmail.com</div>
 </footer>
 
+<div id="toTop">↑</div>
+  
 <script>
-// HERO SLIDER
-const slides=document.querySelectorAll(".slide");
-let i=0;
 
-setInterval(()=>{
-slides[i].classList.remove("active");
-i=(i+1)%slides.length;
-slides[i].classList.add("active");
-},5000);
+// ===== HERO SLIDER =====
+const slides = document.querySelectorAll(".slide");
+let i = 0;
 
-// ACCORDION
-document.querySelectorAll(".service").forEach(s=>{
-s.onclick=()=>s.classList.toggle("active");
+setInterval(() => {
+  slides[i].classList.remove("active");
+  i = (i + 1) % slides.length;
+  slides[i].classList.add("active");
+}, 5000);
+
+
+// ===== ACCORDION =====
+document.querySelectorAll(".service").forEach(s => {
+  s.onclick = () => s.classList.toggle("active");
 });
 
-// BEFORE AFTER DRAG
-// BEFORE AFTER (mouse + full touch swipe support)
 
+// ===== BEFORE / AFTER DRAG =====
 const container = document.getElementById("ba");
 const afterImg = document.getElementById("afterImg");
 const handle = document.getElementById("handle");
@@ -520,7 +523,6 @@ function setSlider(clientX) {
   handle.style.left = percent + "%";
 }
 
-/* START drag anywhere on container (not just handle) */
 container.addEventListener("mousedown", (e) => {
   isDragging = true;
   setSlider(e.clientX);
@@ -533,7 +535,6 @@ window.addEventListener("mousemove", (e) => {
   setSlider(e.clientX);
 });
 
-/* TOUCH SUPPORT (mobile swipe anywhere) */
 container.addEventListener("touchstart", (e) => {
   isDragging = true;
   setSlider(e.touches[0].clientX);
@@ -545,22 +546,72 @@ window.addEventListener("touchmove", (e) => {
   if (!isDragging) return;
   setSlider(e.touches[0].clientX);
 }, { passive: true });
-// LIGHTBOX
-document.querySelectorAll(".clickable").forEach(img=>{
-  img.addEventListener("click",()=>{
-    const lb=document.createElement("div");
-    lb.className="lightbox";
 
-    const i=document.createElement("img");
-    i.src=img.dataset.full;
+
+// ===== LIGHTBOX =====
+document.querySelectorAll(".clickable").forEach(img => {
+  img.addEventListener("click", () => {
+    const lb = document.createElement("div");
+    lb.className = "lightbox";
+
+    const i = document.createElement("img");
+    i.src = img.dataset.full;
 
     lb.appendChild(i);
     document.body.appendChild(lb);
 
-    lb.addEventListener("click",()=>lb.remove());
+    lb.addEventListener("click", () => lb.remove());
   });
 });
-</script>
 
+
+// ===== SCROLL REVEAL (FIXED) =====
+
+// 1. select elements
+const revealElements = document.querySelectorAll(
+  "section, .hero-overlay, .gallery img, .service, h2"
+);
+
+// 2. ADD INITIAL CLASS (THIS WAS MISSING BEFORE)
+revealElements.forEach(el => el.classList.add("reveal"));
+
+function revealOnScroll() {
+  const triggerBottom = window.innerHeight * 0.85;
+
+  revealElements.forEach(el => {
+    const box = el.getBoundingClientRect();
+
+if (box.top < triggerBottom) {
+  el.classList.add("visible");
+} else {
+  el.classList.remove("visible");
+}
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+
+// ===== SCROLL TO TOP BUTTON =====
+const toTop = document.getElementById("toTop");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 600) {
+    toTop.classList.add("show");
+  } else {
+    toTop.classList.remove("show");
+  }
+});
+
+toTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+
+</script>
+  
 </body>
 </html>

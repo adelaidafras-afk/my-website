@@ -264,32 +264,6 @@ footer{
   font-size:13px;
 }
 
-#toTop{
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:rgba(28,28,28,0.85);
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-  cursor:pointer;
-  opacity:0;
-  transform:translateY(10px);
-  transition:all 0.3s ease;
-  z-index:9999;
-  user-select:none;
-}
-
-#toTop.show{
-  opacity:1;
-  transform:translateY(0);
-}
-  
 /* RESPONSIVE */
 @media(max-width:768px){
   .hero{grid-template-columns:1fr;}
@@ -334,19 +308,6 @@ footer{
   max-width:90%;
   max-height:90%;
   border-radius:6px;
-}
-
-/* ===== FADE IN ON SCROLL ===== */
-.reveal{
-  opacity:0;
-  transform: translateY(25px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  will-change: opacity, transform;
-}
-
-.reveal.visible{
-  opacity:1;
-  transform: translateY(0);
 }
 </style>
 </head>
@@ -522,10 +483,6 @@ skulpt.ink@gmail.com<br>
 </footer>
 
 <script>
-
-document.querySelectorAll("section, .hero-overlay, .gallery img, .service, h2")
-.forEach(el => el.classList.add("reveal"));
-  
 // HERO SLIDER
 const slides=document.querySelectorAll(".slide");
 let i=0;
@@ -603,30 +560,7 @@ document.querySelectorAll(".clickable").forEach(img=>{
     lb.addEventListener("click",()=>lb.remove());
   });
 });
-
-const revealElements = document.querySelectorAll(...);
-window.addEventListener("scroll", revealOnScroll);
-  
-// ===== SCROLL REVEAL ANIMATION =====
-const revealElements = document.querySelectorAll("section, .hero-overlay, .gallery img, .service, h2");
-
-function revealOnScroll(){
-  const triggerBottom = window.innerHeight * 0.85;
-
-  revealElements.forEach(el => {
-    const box = el.getBoundingClientRect();
-
-    if (box.top < triggerBottom){
-      el.classList.add("visible");
-    }
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
 </script>
-  
-<!-- SCROLL TO TOP BUTTON -->
-<div id="toTop">↑</div>
+
 </body>
 </html>

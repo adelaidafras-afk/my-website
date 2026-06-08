@@ -309,6 +309,43 @@ footer{
   max-height:90%;
   border-radius:6px;
 }
+
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:all 0.8s ease;
+}
+
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+#toTop{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(28,28,28,0.9);
+  color:white;
+  font-size:18px;
+  border-radius:50%;
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(10px);
+  transition:all 0.3s ease;
+  z-index:9999;
+}
+
+#toTop.show{
+  opacity:1;
+  transform:translateY(0);
+}
+  
 </style>
 </head>
 

@@ -497,29 +497,43 @@ s.onclick=()=>s.classList.toggle("active");
 });
 
 // BEFORE AFTER DRAG
-const container=document.getElementById("ba");
-const afterImg=document.getElementById("afterImg");
-const handle=document.getElementById("handle");
+// BEFORE AFTER DRAG (mouse + touch support)
+const container = document.getElementById("ba");
+const afterImg = document.getElementById("afterImg");
+const handle = document.getElementById("handle");
 
-let dragging=false;
+let dragging = false;
 
-handle.addEventListener("mousedown",()=>dragging=true);
-window.addEventListener("mouseup",()=>dragging=false);
+function moveSlider(clientX){
+  const rect = container.getBoundingClientRect();
+  let x = clientX - rect.left;
 
-window.addEventListener("mousemove",(e)=>{
-if(!dragging) return;
+  if (x < 0) x = 0;
+  if (x > rect.width) x = rect.width;
 
-const rect=container.getBoundingClientRect();
-let x=e.clientX-rect.left;
+  let percent = (x / rect.width) * 100;
 
-if(x<0)x=0;
-if(x>rect.width)x=rect.width;
+  afterImg.style.width = percent + "%";
+  handle.style.left = percent + "%";
+}
 
-let percent=(x/rect.width)*100;
+/* MOUSE */
+handle.addEventListener("mousedown", () => dragging = true);
+window.addEventListener("mouseup", () => dragging = false);
 
-afterImg.style.width=percent+"%";
-handle.style.left=percent+"%";
+window.addEventListener("mousemove", (e) => {
+  if (!dragging) return;
+  moveSlider(e.clientX);
 });
+
+/* TOUCH (iPhone / Android) */
+handle.addEventListener("touchstart", () => dragging = true, { passive: true });
+window.addEventListener("touchend", () => dragging = false);
+
+window.addEventListener("touchmove", (e) => {
+  if (!dragging) return;
+  moveSlider(e.touches[0].clientX);
+}, { passive: true });
 
 // LIGHTBOX
 document.querySelectorAll(".clickable").forEach(img=>{

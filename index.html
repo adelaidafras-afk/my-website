@@ -235,7 +235,9 @@ h2{
   cursor:ew-resize;
   transform:translateX(-50%);
 }
-
+.ba-container{
+  touch-action: none;
+}
 /* CONTACT */
 .contact-wrap{
   display:grid;
@@ -497,44 +499,52 @@ s.onclick=()=>s.classList.toggle("active");
 });
 
 // BEFORE AFTER DRAG
-// BEFORE AFTER DRAG (mouse + touch support)
+// BEFORE AFTER (mouse + full touch swipe support)
+
 const container = document.getElementById("ba");
 const afterImg = document.getElementById("afterImg");
 const handle = document.getElementById("handle");
 
-let dragging = false;
+let isDragging = false;
 
-function moveSlider(clientX){
+function setSlider(clientX) {
   const rect = container.getBoundingClientRect();
   let x = clientX - rect.left;
 
   if (x < 0) x = 0;
   if (x > rect.width) x = rect.width;
 
-  let percent = (x / rect.width) * 100;
+  const percent = (x / rect.width) * 100;
 
   afterImg.style.width = percent + "%";
   handle.style.left = percent + "%";
 }
 
-/* MOUSE */
-handle.addEventListener("mousedown", () => dragging = true);
-window.addEventListener("mouseup", () => dragging = false);
-
-window.addEventListener("mousemove", (e) => {
-  if (!dragging) return;
-  moveSlider(e.clientX);
+/* START drag anywhere on container (not just handle) */
+container.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  setSlider(e.clientX);
 });
 
-/* TOUCH (iPhone / Android) */
-handle.addEventListener("touchstart", () => dragging = true, { passive: true });
-window.addEventListener("touchend", () => dragging = false);
+window.addEventListener("mouseup", () => isDragging = false);
 
-window.addEventListener("touchmove", (e) => {
-  if (!dragging) return;
-  moveSlider(e.touches[0].clientX);
+window.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+  setSlider(e.clientX);
+});
+
+/* TOUCH SUPPORT (mobile swipe anywhere) */
+container.addEventListener("touchstart", (e) => {
+  isDragging = true;
+  setSlider(e.touches[0].clientX);
 }, { passive: true });
 
+window.addEventListener("touchend", () => isDragging = false);
+
+window.addEventListener("touchmove", (e) => {
+  if (!isDragging) return;
+  setSlider(e.touches[0].clientX);
+}, { passive: true });
 // LIGHTBOX
 document.querySelectorAll(".clickable").forEach(img=>{
   img.addEventListener("click",()=>{
